@@ -1,4 +1,4 @@
-#include <stdio.h>
+	#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -206,9 +206,9 @@ int main(){
 					if(TA <= 0.2) printf("Voce ainda ta legal\n");
 					else if(0.2 < TA && TA <= 0.7) printf("Voce ja ta ficando meio cego fera... cuidado pra nao pegar um dragao!\n");
 					else if(0.7 < TA && TA <= 1.5) printf("Acho que voce ja pegou aquele dragao faz tempo...\n");
-					else if(1.5 < TA &&TA <= 2.0) printf("Isso ai na tua boca e vomito seu bostinha?\n");
-					else if(2.0 < TA && TA <= 5.0) printf("Teu cu nao sera perdoado, jovem!\n");
-					else if(TA > 5.0) printf("Se você ta conseguindo ler essa porra aqui e porque tu ja morreu, seu merda!\n");
+					else if(1.5 < TA &&TA <= 2.0) printf("Isso aí na tua boca é vômito seu bostinha?\n");
+					else if(2.0 < TA && TA <= 5.0) printf("Teu cu não será perdoado, jovem!\n");
+					else if(TA > 5.0) printf("Se você ta conseguindo ler essa porra aqui é porque tu já morreu, seu merda!\n");
 					if(TA/7.5 > 0.05) printf("E voce estaria 1.915 reais mais fudido no bafometro a essa hora!!\n\n");
 					if(TA > 0.6){
 						agua = 2;
