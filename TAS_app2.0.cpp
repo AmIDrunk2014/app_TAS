@@ -1,4 +1,4 @@
-	#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -203,6 +203,7 @@ int main(){
 					cont_func = 0;
 					TA = TAS();
 					printf("Voce tem %.3f g/L de alcool no seu sangue\n", TA);
+					if(TA == 0) printf("Ce num bebeu, ta usando isso pq??\n");
 					if(TA <= 0.2) printf("Voce ainda ta legal\n");
 					else if(0.2 < TA && TA <= 0.7) printf("Voce ja ta ficando meio cego fera... cuidado pra nao pegar um dragao!\n");
 					else if(0.7 < TA && TA <= 1.5) printf("Acho que voce ja pegou aquele dragao faz tempo...\n");
