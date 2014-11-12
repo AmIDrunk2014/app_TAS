@@ -54,7 +54,7 @@ float cmp_bebida(){
 		}
 }
 
-void timer_agua (float delay1) {
+void timer(float delay1) {
    if (delay1<0.001) return; 
    float inst1 = 0, inst2 = 0;
    inst1 = (float)clock()/(float)CLOCKS_PER_SEC;
@@ -101,7 +101,7 @@ int toma_agua(){
 			printf("Bom garoto!!\n");
 			break;
 		case 2:
-			timer_agua(5.0);
+			timer(15.0);
 			break;
 		default:
 			("Nao, nao tem essa opcao, agora vai tomar uma agua\n");
@@ -112,7 +112,7 @@ int toma_agua(){
 
 int quest_ress(){
 	int pontos = 0;
-	int opcao;
+	int opcao = 15;
 	while(opcao !=0){
 		printf("\nO que vc tem fera?\n\n0. To bao\n1. Dor de cabeca\n2. Dor no corpo\n3. Dor de estomago\n4. Nausea\n5. Vomito\n6. Palpitacao\n7. Cansaco\n8. Sede\n9. Tontura\n10. Depressivo\n11. Ansioso\n12. Puto\n13. Ainda to locasso\n14. So isso\n\n");
 		scanf("%d", &opcao);
@@ -186,12 +186,13 @@ int quest_ress(){
 }
 
 int main(){
-	FILE *arq;
-	arq	= fopen("arquivo.txt", "a");
+	FILE *arq_in, *arq_ress;
 	float teor, TA;
 	int func, agua;
 	int cont_func = 0;
 		while(cont_func != 5){
+			arq_in	= fopen("arquivo_i.txt", "a");
+			arq_ress = fopen("arquivo_ressaca.txt", "a");
 			printf("\nDigite a funcionalidade:\n1. Bebidas e Porcentagem de Alcool\n2. Descubra quanto alcool tem no seu sangue!(TAS)\n3. Questionario de Ressaca\n");
 			scanf("%d", &func);
 			switch(func){
@@ -199,10 +200,23 @@ int main(){
 					cont_func = 0;
 					teor = cmp_bebida();
 					printf("Esta bebida possui um teor alcoolico de %.1f por cento\n", teor);
+					fclose(arq_in);
+					fclose(arq_ress);
+					timer(2.5);
 					break;
 				case 2:
 					cont_func = 0;
 					TA = TAS();
+					//Arquivo
+					fprintf(arq_in, "Voce tem %.3f g/L de alcool no seu sangue\n", TA);
+					if(TA <= 0.2) fprintf(arq_in, "Voce ainda ta legal\n");
+					else if(0.2 < TA && TA <= 0.7) fprintf(arq_in, "Voce ja ta ficando meio cego fera... cuidado pra nao pegar um dragao!\n");
+					else if(0.7 < TA && TA <= 1.5) fprintf(arq_in, "Axo q vc ja pegou akele dragao faz tempo...\n");
+					else if(1.5 < TA &&TA <= 2.0) fprintf(arq_in, "Ja ta enxergando dobrado ne... Vai pra casa moleque solto.\n");
+					else if(2.0 < TA && TA <= 5.0) fprintf(arq_in, "Nenem ta dumindo, ta??\n");
+					else if(TA > 5.0) fprintf(arq_in, "No ceu tem pao?? E morreu.\n");
+					if(TA/7.5 > 0.05) fprintf(arq_in, "E voce estaria 1.915 reais mais fudido no bafometro a essa hora!!\n\n");
+					//Usuario
 					printf("Voce tem %.3f g/L de alcool no seu sangue\n", TA);
 					if(TA <= 0.2) printf("Voce ainda ta legal\n");
 					else if(0.2 < TA && TA <= 0.7) printf("Voce ja ta ficando meio cego fera... cuidado pra nao pegar um dragao!\n");
@@ -211,22 +225,38 @@ int main(){
 					else if(2.0 < TA && TA <= 5.0) printf("Nenem ta dumindo, ta??\n");
 					else if(TA > 5.0) printf("No ceu tem pao?? E morreu.\n");
 					if(TA/7.5 > 0.05) printf("E voce estaria 1.915 reais mais fudido no bafometro a essa hora!!\n\n");
+					timer(2.5);
 					if(TA > 0.6){
 						agua = 2;
 						while(agua != 1){
 							agua = toma_agua();
 						}
 					}
+					fclose(arq_in);
+					fclose(arq_ress);
+					timer(2.5);
 					break;
 				case 3:
+					cont_func = 0;
 					int pontos;
 					pontos = quest_ress();
+					//Arquivo
+					fprintf(arq_ress, "\nVc fez %d pontos\n\n", pontos);
+					if(pontos <= 0) fprintf(arq_ress, "Isso que e um rapaz de deus!\n");
+					else if(0 < pontos && pontos <= 32) fprintf(arq_ress, "Toma um engov que sara\n");
+					else if(32 < pontos && pontos <= 67) fprintf(arq_ress, "Vamo beber menos na proxima ne champs?\n");
+					else if(67 < pontos && pontos <= 93) fprintf(arq_ress, "Desse jeito teu figado vai ficar igual voce.. seu fudido\n");
+					else if(93 < pontos && pontos <= 124) fprintf(arq_ress, "CACETE, tem certeza que teu cu ainda é virgem a uma hora dessas?\n\n");
+					//Usuario
 					printf("\nVc fez %d pontos\n\n", pontos);
 					if(pontos <= 0) printf("Isso que e um rapaz de deus!\n");
 					else if(0 < pontos && pontos <= 32) printf("Toma um engov que sara\n");
 					else if(32 < pontos && pontos <= 67) printf("Vamo beber menos na proxima ne champs?\n");
 					else if(67 < pontos && pontos <= 93) printf("Desse jeito teu figado vai ficar igual voce.. seu fudido\n");
-					else if(93 < pontos && pontos <= 124) printf("CACETE, tem certeza que teu cu ainda é virgem a uma hora dessas?\n");
+					else if(93 < pontos && pontos <= 124) printf("CACETE, tem certeza que teu cu ainda é virgem a uma hora dessas?\n\n");
+					fclose(arq_in);
+					fclose(arq_ress);
+					timer(2.5);
 					break;
 				default:
 					printf("\nNao, nao tem essa opcao, seu bebado otario\n");
@@ -235,9 +265,12 @@ int main(){
 						printf("\nSEU TROXA, MAIS UMA E O APP VAI FEXAR!\n\n");
 					}
 					else if(cont_func == 5) printf("\nFESSOU!\n\n");
+					fclose(arq_in);
+					fclose(arq_ress);
 			}
+			fclose(arq_in);
+			fclose(arq_ress);
 		}
-		fclose(arq);
 		system("pause");
 		return 0;
 }
