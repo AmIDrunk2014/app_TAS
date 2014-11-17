@@ -197,11 +197,14 @@ void relatorio(FILE *arquivo){
 int main(){
 	FILE *arq_in, *arq_ress;
 	float teor, TA;
+	char data[10];
 	int func, agua;
 	int cont_func = 0;
+	printf("Que dia e hoje fera?\n");
+	scanf("%s", &data);
 		while(cont_func != 5){
-			arq_in	= fopen("arquivo_i.txt", "a");
-			arq_ress = fopen("arquivo_ressaca.txt", "a");
+			arq_in	= fopen("arquivo_i.txt", "a+");
+			arq_ress = fopen("arquivo_ressaca.txt", "a+");
 			printf("\nDigite a funcionalidade:\n1. Bebidas e Porcentagem de Alcool\n2. Descubra quanto alcool tem no seu sangue!(TAS)\n3. Questionario de Ressaca\n4. Relatorio de Bebedeira\n5. Relatorio de Ressaca\n6. Limpar Historico de Bebedeira\n7. Limpar Historico de Ressaca\n\n");
 			scanf("%d", &func);
 			system("cls");
@@ -219,6 +222,7 @@ int main(){
 					cont_func = 0;
 					TA = TAS();
 					//Arquivo
+					fprintf(arq_in, "%s\n", data);
 					fprintf(arq_in, "Voce tem %.3f g/L de alcool no seu sangue\n", TA);
 					if(TA <= 0.2) fprintf(arq_in, "Voce ainda ta legal\n");
 					else if(0.2 < TA && TA <= 0.7) fprintf(arq_in, "Voce ja ta ficando meio cego fera... cuidado pra nao pegar um dragao!\n");
@@ -254,6 +258,7 @@ int main(){
 					int pontos;
 					pontos = quest_ress();
 					//Arquivo
+					fprintf(arq_ress, "%s\n", data);
 					fprintf(arq_ress, "\nVc fez %d pontos\n\n", pontos);
 					if(pontos <= 0) fprintf(arq_ress, "Isso que e um rapaz de deus!\n");
 					else if(0 < pontos && pontos <= 32) fprintf(arq_ress, "Toma um engov que sara\n");
@@ -278,7 +283,7 @@ int main(){
 					relatorio(arq_in);
 					fclose(arq_in);
 					fclose(arq_ress);
-					timer(2.5);
+					timer(10.0);
 					system("cls");
 					break;
 				case 5: //Relatorio de Ressaca
@@ -286,7 +291,7 @@ int main(){
 					relatorio(arq_ress);
 					fclose(arq_in);
 					fclose(arq_ress);
-					timer(2.5);
+					timer(10.0);
 					system("cls");
 					break;
 				case 6: //Limpar Historico de Bebedeira
