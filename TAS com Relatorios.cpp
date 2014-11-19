@@ -223,14 +223,14 @@ int main(){
 					TA = TAS();
 					//Arquivo
 					fprintf(arq_in, "%s\n", data);
-					fprintf(arq_in, "Voce tem %.3f g/L de alcool no seu sangue\n", TA);
-					if(TA <= 0.2) fprintf(arq_in, "Voce ainda ta legal\n");
-					else if(0.2 < TA && TA <= 0.7) fprintf(arq_in, "Voce ja ta ficando meio cego fera... cuidado pra nao pegar um dragao!\n");
-					else if(0.7 < TA && TA <= 1.5) fprintf(arq_in, "Axo q vc ja pegou akele dragao faz tempo...\n");
-					else if(1.5 < TA &&TA <= 2.0) fprintf(arq_in, "Ja ta enxergando dobrado ne... Vai pra casa moleque solto.\n");
-					else if(2.0 < TA && TA <= 5.0) fprintf(arq_in, "Nenem ta dumindo, ta??\n");
-					else if(TA > 5.0) fprintf(arq_in, "No ceu tem pao?? E morreu.\n");
-					if(TA/7.5 > 0.05) fprintf(arq_in, "E voce estaria 1.915 reais mais fudido no bafometro a essa hora!!\n\n");
+					fprintf(arq_in, "Voce tinha %.3f g/L de alcool no seu sangue\n", TA);
+					if(TA <= 0.2) fprintf(arq_in, "Voce tava legal, pra um bebado...\n");
+					else if(0.2 < TA && TA <= 0.7) fprintf(arq_in, "Voce tava meio cego fera... Lembra de algum dragao??\n");
+					else if(0.7 < TA && TA <= 1.5) fprintf(arq_in, "Voce deve ter dado ruim...\n");
+					else if(1.5 < TA &&TA <= 2.0) fprintf(arq_in, "Tava enxergando dobrado...\n");
+					else if(2.0 < TA && TA <= 5.0) fprintf(arq_in, "Vai dormir q essa ressaca ainda n passou\n");
+					else if(TA > 5.0) fprintf(arq_in, "Pelo jeito voce nao deve lembrar muita coisa de ontem nao...\n");
+					if(TA/7.5 > 0.05) fprintf(arq_in, "Se voce nao ta na cadeia significa q vc voltou a pe!!\n\n");
 					fprintf(arq_in, "-------------------------------------\n");
 					//Usuario
 					printf("Voce tem %.3f g/L de alcool no seu sangue\n", TA);
@@ -261,10 +261,10 @@ int main(){
 					fprintf(arq_ress, "%s\n", data);
 					fprintf(arq_ress, "\nVc fez %d pontos\n\n", pontos);
 					if(pontos <= 0) fprintf(arq_ress, "Isso que e um rapaz de deus!\n");
-					else if(0 < pontos && pontos <= 32) fprintf(arq_ress, "Toma um engov que sara\n");
-					else if(32 < pontos && pontos <= 67) fprintf(arq_ress, "Vamo beber menos na proxima ne champs?\n");
-					else if(67 < pontos && pontos <= 93) fprintf(arq_ress, "Desse jeito teu figado vai ficar igual voce.. seu fudido\n");
-					else if(93 < pontos && pontos <= 124) fprintf(arq_ress, "CACETE, tem certeza que teu cu ainda é virgem a uma hora dessas?\n\n");
+					else if(0 < pontos && pontos <= 32) fprintf(arq_ress, "Um engov seria bom\n");
+					else if(32 < pontos && pontos <= 67) fprintf(arq_ress, "Uma vomitadinha nao faria mal\n");
+					else if(67 < pontos && pontos <= 93) fprintf(arq_ress, "Esse dia vc tava na merda de tanta ressaca\n");
+					else if(93 < pontos && pontos <= 124) fprintf(arq_ress, "CACETE, vai ficar chapado assim la na casa do caralho\n\n");
 					fprintf(arq_ress, "-------------------------------------\n");
 					//Usuario
 					printf("\nVc fez %d pontos\n\n", pontos);
@@ -306,7 +306,7 @@ int main(){
 					cont_func = 0;
 					printf("Sua vergonha foi limpa com sucesso\n");
 					fclose(arq_in);
-					remove("arquivo_ress.txt");
+					remove("arquivo_ressaca.txt");
 					timer(2.5);
 					system("cls");
 					break;
